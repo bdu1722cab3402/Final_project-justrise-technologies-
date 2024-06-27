@@ -4,38 +4,253 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="styles1.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+      body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f9fc;
+    display: flex;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #34495e;
+    color: white;
+    padding: 20px;
+}
+
+.sidebar .profile {
+    text-align: center;
+}
+
+.sidebar .profile img {
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+}
+
+.sidebar nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar nav ul li {
+    margin: 20px 0;
+}
+
+.sidebar nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.main-content {
+    flex: 1;
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header h1 {
+    margin: 0;
+}
+
+.header .header-right a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: #34495e;
+}
+
+.stats, .tasks, .additional-stats {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+.stat-box {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    width: 30%;
+    text-align: center;
+}
+
+.tasks .task-list {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    width: 30%;
+}
+
+.chart {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin: 20px 0;
+}
+
+.footer {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin: 20px 0;
+    text-align: center;
+}
+
+    </style>
 </head>
 <body>
-    <div class="sidebar">
-        <h2>Dashboard</h2>
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Analytics</a></li>
-            <li><a href="#">Reports</a></li>
-            <li><a href="#">Settings</a></li>
-        </ul>
-    </div>
-    <div class="main-content">
-        <div class="header">
-            <h1>Welcome to the Dashboard</h1>
-        </div>
-        <div class="cards">
-            <div class="card">
-                <h3>Total Sales</h3>
-                <p id="total-sales">Loading...</p>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="profile">
+                <img src="Bg.jpg" alt="Profile Picture">
+                <h2>Siddhik</h2>
             </div>
-            <div class="card">
-                <h3>Users</h3>
-                <p id="total-users">Loading...</p>
-            </div>
-        </div>
-        <div class="charts">
-            <canvas id="sales-chart"></canvas>
-            <canvas id="users-chart"></canvas>
-        </div>
+            <nav>
+                <ul>
+                    <li><a href="#">Dashboard</a></li>
+                    <li><a href="#">Mailbox</a></li>
+                    <li><a href="#">File Manager</a></li>
+                    <li><a href="#">Calendar</a></li>
+                    <li><a href="#">Logout</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <main class="main-content">
+            <header class="header">
+                <h1>Dashboard</h1>
+                <div class="header-right">
+                    <a href="#">Applications</a>
+                    <a href="#">Reports</a>
+                    <a href="#">Projects</a>
+                </div>
+            </header>
+            <section class="stats">
+                <div class="stat-box">
+                    <h2>Today's Sales</h2>
+                    <p>$38,211</p>
+                </div>
+                <div class="stat-box">
+                    <h2>Active Users</h2>
+                    <p>23,491</p>
+                </div>
+                <div class="stat-box">
+                    <h2>Downloads</h2>
+                    <p>140,390</p>
+                </div>
+            </section>
+            <section class="tasks">
+                <div class="task-list">
+                    <h3>Active Tasks</h3>
+                    <ul>
+                        <li>Dashboard optimizations</li>
+                        <li>Mailbox cleanup</li>
+                        <li>Header scroll bugfix</li>
+                        <li>Localization for file manager</li>
+                        <li>New E-commerce UI/UX design</li>
+                    </ul>
+                </div>
+                <div class="task-list">
+                    <h3>To Do</h3>
+                    <ul>
+                        <li><input type="checkbox"> Dashboard optimizations</li>
+                        <li><input type="checkbox"> Mailbox cleanup</li>
+                        <li><input type="checkbox"> Header scroll bugfix</li>
+                        <li><input type="checkbox"> Localization for file manager</li>
+                        <li><input type="checkbox"> New E-commerce UI/UX design</li>
+                    </ul>
+                </div>
+                <div class="task-list">
+                    <h3>In Progress</h3>
+                    <ul>
+                        <li>Dashboard optimizations</li>
+                        <li>Mailbox cleanup</li>
+                        <li>Header scroll bugfix</li>
+                        <li>Localization for file manager</li>
+                        <li>New E-commerce UI/UX design</li>
+                    </ul>
+                </div>
+            </section>
+            <section class="chart">
+                <h3>Earnings</h3>
+                <canvas id="earnings-chart"></canvas>
+            </section>
+            <section class="additional-stats">
+                <div class="stat-box">
+                    <h2>Tasks Completed</h2>
+                    <p>1,871</p>
+                </div>
+                <div class="stat-box">
+                    <h2>Engagement</h2>
+                    <p>45,661</p>
+                </div>
+                <div class="stat-box">
+                    <h2>Balance</h2>
+                    <p>$218,655</p>
+                </div>
+            </section>
+            <section class="footer">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, quam, commodi! Suscipit, iure sit perferendis modi asperiores quaerat deleniti enim hic harum labore beatae quisquam dicta vitae mollitia eveniet impedit. Rem iure et nemo quia, quisquam iusto, quod temporibus esse, quas quae, aut voluptas nihil. Nulla explicabo enim, cum reprehenderit minima quaerat iure quos. Veritatis esse nobis nihil fugiat quae. Optio nobis ipsa accusamus, beatae porro. Animi ullam magnam fugiat doloremque molestias tenetur voluptatibus nobis et veniam, deserunt adipisci provident cum blanditiis dolore hic voluptatem ut, numquam! Incidunt deserunt, labore amet qui id quos autem repellendus est ullam. Accusamus ad alias aliquam libero assumenda doloremque, quis commodi possimus, ipsa dolore. Veritatis assumenda voluptatum corporis quod culpa cumque, quis nemo unde ut nulla praesentium mollitia, voluptate a dolore ea officiis officia minus ipsum fugiat? Vel itaque id est deleniti eos autem voluptate voluptatem dolorum, nobis perspiciatis ea vero ipsam voluptatum doloribus iusto! Ipsum unde, dolore doloribus excepturi suscipit modi vel ducimus, fugit architecto labore, inventore accusamus facilis voluptatum sit optio voluptates, magni quae earum provident ut odio magnam quidem! Sequi earum impedit deserunt commodi, laborum voluptas quas. Hic ab autem ex, beatae nulla obcaecati quas maiores nihil natus. Eius porro, fuga. Quisque congue risus sit amet pellentesque fermentum. Donec rutrum, erat nec accumsan cursus, metus nunc bibendum massa, ut vulputate lorem felis ac urna.</p>
+            </section>
+        </main>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="script1.js"></script>
+    <script>
+      // Select the canvas element for the earnings chart
+const ctx = document.getElementById('earnings-chart').getContext('2d');
+
+// Create the earnings chart using Chart.js
+const earningsChart = new Chart(ctx, {
+    type: 'bar', // The type of chart we want to create
+    data: {
+        labels: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'], // The labels for the x-axis
+        datasets: [
+            {
+                label: 'Net Profit',
+                backgroundColor: '#1abc9c',
+                borderColor: '#1abc9c',
+                data: [20, 30, 40, 50, 60, 70, 80, 90, 100] // Example data
+            },
+            {
+                label: 'Revenue',
+                backgroundColor: '#3498db',
+                borderColor: '#3498db',
+                data: [10, 40, 30, 60, 20, 90, 50, 100, 80] // Example data
+            },
+            {
+                label: 'Free Cash Flow',
+                backgroundColor: '#e74c3c',
+                borderColor: '#e74c3c',
+                data: [30, 50, 20, 40, 70, 80, 60, 90, 100] // Example data
+            }
+        ]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            y: {
+                beginAtZero: true // Ensures the y-axis begins at zero
+            }
+        }
+    }
+});
+
+    </script>
 </body>
 </html>
+
